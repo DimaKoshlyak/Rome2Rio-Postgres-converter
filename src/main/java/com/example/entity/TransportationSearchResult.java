@@ -14,23 +14,51 @@ import java.util.List;
 public class TransportationSearchResult implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "search_result_id")
     private int id;
+
+    @Column(name = "departure_city")
     private String departureCity;
+
+    @Column(name = "arrival_city")
     private String arrivalCity;
+
+    @Column(name = "departure_station")
     private String departureStation;
+
+    @Column(name = "departure_date_time")
     private Calendar departureDateTime;
+
+    @Column(name = "arrival_station")
     private String arrivalStation;
+
+    @Column(name = "arrival_date_time")
     private Calendar arrivalDateTime;
+
+    @Column(name = "total_duration")
     private int totalDuration;
+
+    @Column(name = "total_distance")
     private double totalDistance;
+
+    @Column(name = "total_price")
     private double totalPrice;
+
     private String currency;
     private boolean selected;
 
+
+//    @OneToMany(mappedBy = "transportationSearchResult")
     @OneToMany
+    @JoinTable(
+            name="transportationsmock_intervals",
+            joinColumns = @JoinColumn( name="search_result_id"),
+            inverseJoinColumns = @JoinColumn( name="interval_id")
+    )
     private List<TransportationInterval> intervals;
 
+    @Column(name = "transport_type_list")
     private String transportTypeList;
 
     public TransportationSearchResult() {

@@ -10,31 +10,57 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "intervalsmock")
-public class TransportationInterval implements Serializable{
+public class TransportationInterval implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "interval_id")
     private int id;
 
+    @Column(name = "departure_station")
     private String departureStation;
+
+    @Column(name = "departure_date_time")
     private Calendar departureDateTime;
+
+    @Column(name = "arrival_station")
     private String arrivalStation;
+
+    @Column(name = "arrival_date_time")
     private Calendar arrivalDateTime;
 
+    @Column(name = "transport_type")
     private String transportType;
+
+    @Column(name = "provider")
     private String provider;
+
+    @Column(name = "interval_duration")
     private int intervalDuration;
+
+    @Column(name = "interval_distance")
     private double intervalDistance;
+
+    @Column(name = "interval_price")
     private double intervalPrice;
 
-    @ManyToOne
-    private TransportationSearchResult transportationSearchResult;
+//    @ManyToOne
+//    @JoinTable(
+//            name = "transportationsmock_intervals",
+//            joinColumns = @JoinColumn(name = "intervals_id"),
+//            inverseJoinColumns = @JoinColumn(name = "transportation_search_result_id")
+//    )
+//    private TransportationSearchResult transportationSearchResult;
 
     public TransportationInterval() {
     }
 
     public String getTransportType() {
         return transportType;
+    }
+
+    public void setTransportType(String transportType) {
+        this.transportType = transportType;
     }
 
     public int getId() {
@@ -77,10 +103,6 @@ public class TransportationInterval implements Serializable{
         this.arrivalDateTime = arrivalDateTime;
     }
 
-    public void setTransportType(String transportType) {
-        this.transportType = transportType;
-    }
-
     public String getProvider() {
         return provider;
     }
@@ -113,11 +135,11 @@ public class TransportationInterval implements Serializable{
         this.intervalPrice = intervalPrice;
     }
 
-    public TransportationSearchResult getTransportationSearchResult() {
-        return transportationSearchResult;
-    }
-
-    public void setTransportationSearchResult(TransportationSearchResult transportationSearchResult) {
-        this.transportationSearchResult = transportationSearchResult;
-    }
+//    public TransportationSearchResult getTransportationSearchResult() {
+//        return transportationSearchResult;
+//    }
+//
+//    public void setTransportationSearchResult(TransportationSearchResult transportationSearchResult) {
+//        this.transportationSearchResult = transportationSearchResult;
+//    }
 }
